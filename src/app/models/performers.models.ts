@@ -1,3 +1,5 @@
+import { MusicDetail } from "./musics.models";
+
 export interface PerformerDetail {
 
     url: string,
@@ -6,6 +8,7 @@ export interface PerformerDetail {
     origin: string,
     birth_date: Date,
     formation_year: number
+    performer_musics: MusicDetail[]
 }
 
 export interface PerformerList{

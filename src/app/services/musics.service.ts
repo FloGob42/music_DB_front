@@ -49,6 +49,17 @@ export class MusicsService {
     return this._http.get<PerformerDetail>(`${this.baseUrl}/performers/${id}`)
   }
 
+  getPerformerMusics(name: string): Observable<MusicList> {
+    return this.getMusics(0, 1000).pipe(
+      map(list => ({
+        ...list,
+        results: list.results.filter(music =>
+          music.performer_name.toLowerCase().includes(name.toLowerCase())
+        )
+      }))
+    )
+  }
+
   searchPerformer(name: string): Observable<PerformerList> {
     return this.getPerformers(0, 1000).pipe(
       map(list => ({
