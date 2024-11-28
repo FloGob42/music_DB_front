@@ -6,11 +6,12 @@ import { MusicsService } from '../../services/musics.service';
 import { MusicDetail, MusicList } from '../../models/musics.models';
 import { PerformerDetail } from '../../models/performers.models';
 import { Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-performers-list',
   standalone: true,
-  imports: [CommonModule, PerformerDetailsComponent, PerformerSearchComponent],
+  imports: [CommonModule, RouterLink, PerformerSearchComponent],
   templateUrl: './performers-list.component.html',
   styleUrl: './performers-list.component.scss'
 })
@@ -34,6 +35,7 @@ export class PerformersListComponent {
     this._musicService.getPerformers(this.currentPage * this.pageSize, this.pageSize).subscribe(data => {
       this.performers = data.results;
       this.hasNextPage = !!data.next;
+      console.log(data)
     });
   }
 

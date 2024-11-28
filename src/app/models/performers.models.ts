@@ -1,7 +1,7 @@
 import { MusicDetail } from "./musics.models";
 
 export interface PerformerDetail {
-
+    id: number,
     url: string,
     name: string,
     genre: string,

@@ -1,1 +1,13 @@
-<p>performer-details works!</p>
+<div *ngIf="performer">
+    <p><strong>Name: </strong><span>{{performer.name}}</span></p>
+    <p><strong>Genre: </strong><span>{{performer.genre}}</span></p>
+    <p><strong>Origin: </strong><span>{{performer.origin}}</span></p>
+    <div *ngIf="performer.formation_year">
+        <p><strong>Formation year: </strong><span>{{performer.formation_year}}</span></p>
+    </div>
+    <div *ngIf="performer.birth_date">
+        <p><strong>Date of birth: </strong><span>{{performer.birth_date}}</span></p>
+    </div>
+    <div><strong>Musics: </strong><div *ngFor="let music of performer.performer_musics"><a [routerLink]="['/musics', music.id]">{{music.title}}</a></div>
+    </div>
+</div>

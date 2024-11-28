@@ -1,18 +1,15 @@
 <div class="container mx-auto px-4 py-8">
     
-
+    <app-performer-search
+    (searchChange)="onSearch($event)"
+            class="mb-8">
+        </app-performer-search>
+        
     <div>
-    <div
-        *ngFor="let performer of performers"
-        
-    >
-        <h3>{{performer.name}}</h3>
-        <button (click)="loadPerformerDetail(performer)">
-            See details
-        </button>
-        
+        <div *ngFor="let performer of performers">
+            <a [routerLink]="['/performers', performer.id]">{{ performer.name }}</a>
 
-    </div>
+        </div>
     </div>
 
 
