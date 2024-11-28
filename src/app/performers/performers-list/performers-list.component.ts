@@ -44,8 +44,8 @@ export class PerformersListComponent {
     )
   }
 
-  loadPerformerMusics(music: MusicDetail): void {
-    const name = music.performer_name;
+  loadPerformerMusics(name: string): void {
+    
     this._musicService.getPerformerMusics(name).subscribe(
       detail => this.performerMusics = detail
     )

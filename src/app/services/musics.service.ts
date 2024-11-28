@@ -24,7 +24,7 @@ export class MusicsService {
   
   
   getMusicDetail(id: string | number): Observable<MusicDetail> {
-    return this._http.get<MusicDetail>(`${this.baseUrl}/musics/${id}`);
+    return this._http.get<MusicDetail>(`${this.baseUrl}/musics/${id}/`);
     }
 
 

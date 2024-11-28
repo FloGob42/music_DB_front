@@ -2,15 +2,16 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MusicSearchComponent } from '../music-search/music-search.component';
 import { MusicDetailsComponent } from '../music-details/music-details.component';
-import { MusicsService } from '../../../services/musics.service';
-import { MusicDetail } from '../../../models/musics.models';
-import { PerformerDetail } from '../../../models/performers.models';
+import { MusicsService } from '../../services/musics.service';
+import { MusicDetail } from '../../models/musics.models';
+import { PerformerDetail } from '../../models/performers.models';
 import { Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-musics-list',
   standalone: true,
-  imports: [CommonModule, MusicDetailsComponent, MusicSearchComponent],
+  imports: [CommonModule, RouterLink, MusicSearchComponent],
   templateUrl: './musics-list.component.html',
   styleUrl: './musics-list.component.scss'
 })

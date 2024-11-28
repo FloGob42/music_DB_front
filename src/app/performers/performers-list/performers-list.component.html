@@ -6,13 +6,11 @@
         *ngFor="let performer of performers"
         
     >
-        
+        <h3>{{performer.name}}</h3>
         <button (click)="loadPerformerDetail(performer)">
-            {{performer.name}}
+            See details
         </button>
-        <h4 (click)="loadPerformerMusics(performer.performer_musics)">
-            {{music.performer_name}}
-        </h4>
+        
 
     </div>
     </div>

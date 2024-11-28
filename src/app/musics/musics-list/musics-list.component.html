@@ -1,19 +1,18 @@
 <div class="container mx-auto px-4 py-8">
-    
+
+        <!-- Composant de recherche -->
+        <app-music-search
+            (searchChange)="onSearch($event)"
+            class="mb-8"
+        ></app-music-search>
 
     <div>
-    <div
-        *ngFor="let music of musics"
+        <div *ngFor="let music of musics">
+            <a [routerLink]="['/musics', music.id]">{{ music.title }}</a>
+            <h4>{{music.performer_name}}</h4>
         
-    >
         
-        <button (click)="loadMusicDetail(music)">
-            {{music.title}}
-        </button>
-        <h4 (click)="loadPerformerDetail(music.performer)">
-            {{music.performer_name}}
-        </h4>
-
+        </div>
     </div>
     </div>
 
