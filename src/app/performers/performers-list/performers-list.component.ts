@@ -35,7 +35,7 @@ export class PerformersListComponent {
     this._musicService.getPerformers(this.currentPage * this.pageSize, this.pageSize).subscribe(data => {
       this.performers = data.results;
       this.hasNextPage = !!data.next;
-      console.log(data)
+      
     });
   }
 
@@ -46,12 +46,12 @@ export class PerformersListComponent {
     )
   }
 
-  loadPerformerMusics(name: string): void {
+  // loadPerformerMusics(name: string): void {
     
-    this._musicService.getPerformerMusics(name).subscribe(
-      detail => this.performerMusics = detail
-    )
-  }
+  //   this._musicService.getPerformerMusics(name).subscribe(
+  //     detail => this.performerMusics = detail
+  //   )
+  // }
 
   nextPage(): void {
     if (this.hasNextPage) {

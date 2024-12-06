@@ -37,10 +37,10 @@ export class PerformerDetailsComponent {
     });
   }
 
-  loadPerformerMusics(name: string): void {
+  // loadPerformerMusics(name: string): void {
     
-    this.musicsService.getPerformerMusics(name).subscribe(
-      detail => this.performerMusics = detail
-    )
-  }
+  //   this.musicsService.getPerformerMusics(name).subscribe(
+  //     detail => this.performerMusics = detail
+  //   )
+  // }
 }

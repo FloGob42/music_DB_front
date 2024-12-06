@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
 import { MusicDetail, MusicList } from '../models/musics.models';
 import { HttpClient } from '@angular/common/http';
 import { PerformerDetail, PerformerList } from '../models/performers.models';
@@ -16,7 +16,7 @@ export class MusicsService {
   constructor(private _http: HttpClient) { }
     
   
-  getMusics(offset: number = 0, limit: number = 20): Observable<MusicList> {
+  getMusics(offset: number =0, limit:number=20): Observable<MusicList> {
       return this._http.get<MusicList>(
         `${this.baseUrl}/musics?offset=${offset}&limit=${limit}`
       );
@@ -28,15 +28,44 @@ export class MusicsService {
     }
 
 
-  searchMusic(title: string): Observable<MusicList> {
-    return this.getMusics(0, 1000).pipe(
-      map(list => ({
-        ...list,
-        results: list.results.filter(music =>
-          music.title.toLowerCase().includes(title.toLowerCase())
-        )
-      }))
-    );
+  // searchMusic(criteria: string): Observable<MusicList> {
+  //   return this.getMusics(0, 1000).pipe(
+  //     map(list => ({
+  //       ...list,
+  //       results: list.results.filter(music =>
+  //         music.title.toLowerCase().includes(criteria.toLowerCase()) || music.genre.toLowerCase().includes(criteria.toLowerCase())
+  //       )
+        
+  //     }))
+  //   );
+  // }
+
+  // searchMusic(criteria: string): Observable<MusicList> {
+  //   return this.getMusics(0, 200).pipe(
+  //     tap(list => {
+  //       // This will log the 'list' object before filtering
+  //       console.log('List before filtering:', list);
+  //     }),
+  //     map(list => ({
+  //       ...list,
+  //       results: list.results.filter(music =>
+  //         music.title.toLowerCase().includes(criteria.toLowerCase()) || 
+  //         music.genre.toLowerCase().includes(criteria.toLowerCase())
+  //       )
+  //     }))
+  //   );
+  // }
+
+  searchMusic(titleCriteria?: string, genreCriteria?: string, offset:number=0, limit: number=20): Observable<MusicList>{
+    
+    return this._http.get<MusicList>(`${this.baseUrl}/musics/?genre__icontains=${genreCriteria}&title__icontains=${titleCriteria}&offset=${offset}&limit=${limit}`)
+  
+}
+
+
+
+  searchMusicGenre(criteria: string, offset:number=0, limit: number=20): Observable<MusicList>{
+    return this._http.get<MusicList>(`${this.baseUrl}/musics/?genre__icontains=${criteria}&offset=${offset}&limit=${limit}`)
   }
 
   getPerformers(offset: number = 0, limit: number = 20): Observable<PerformerList> {
@@ -49,16 +78,16 @@ export class MusicsService {
     return this._http.get<PerformerDetail>(`${this.baseUrl}/performers/${id}`)
   }
 
-  getPerformerMusics(name: string): Observable<MusicList> {
-    return this.getMusics(0, 1000).pipe(
-      map(list => ({
-        ...list,
-        results: list.results.filter(music =>
-          music.performer_name.toLowerCase().includes(name.toLowerCase())
-        )
-      }))
-    )
-  }
+  // getPerformerMusics(name: string): Observable<MusicList> {
+  //   return this.getMusics(0, 1000).pipe(
+  //     map(list => ({
+  //       ...list,
+  //       results: list.results.filter(music =>
+  //         music.performer_name.toLowerCase().includes(name.toLowerCase())
+  //       )
+  //     }))
+  //   )
+  // }
 
   searchPerformer(name: string): Observable<PerformerList> {
     return this.getPerformers(0, 1000).pipe(
@@ -82,16 +111,16 @@ export class MusicsService {
     )
   }
   
-  searchMusicGenre(genre: string): Observable<MusicList> {
-    return this.getMusics(0, 1000).pipe(
-      map(list => ({
-        ...list,
-        results: list.results.filter(music =>
-          music.genre.toLowerCase().includes(genre.toLowerCase())
-        )
-      }))
-    );
-  }
+  // searchMusicGenre(genre: string): Observable<MusicList> {
+  //   return this.getMusics(0, 1000).pipe(
+  //     map(list => ({
+  //       ...list,
+  //       results: list.results.filter(music =>
+  //         music.genre.toLowerCase().includes(genre.toLowerCase())
+  //       )
+  //     }))
+  //   );
+  // }
 
 }
 
