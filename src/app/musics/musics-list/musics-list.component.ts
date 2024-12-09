@@ -8,6 +8,7 @@ import { PerformerDetail } from '../../models/performers.models';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { PerformerDetailsComponent } from '../../performers/performer-details/performer-details.component';
 
 @Component({
   selector: 'app-musics-list',
@@ -27,6 +28,7 @@ export class MusicsListComponent {
   currentPage = 0;
   pageSize = 20;
   hasNextPage = true;
+  numberOfPages?: number | null
 
   ngOnInit(): void {
     this.loadMusics();
@@ -37,30 +39,19 @@ export class MusicsListComponent {
     this._musicService.getMusics().subscribe(data => {
       this.musics = data.results;
       this.hasNextPage = !!data.next;
-      console.log(data.results)
+      this.numberOfPages = Math.ceil(data.count/this.pageSize)
     });
   }
 
-  loadMusicDetail(music: MusicDetail): void {
-    const id = music.url.split('/').slice(-2, -1)[0];
-    this._musicService.getMusicDetail(id).subscribe(
-      detail => this.selectedMusic = detail
-    )
-  }
 
-  loadPerformerDetail(performer: PerformerDetail): void {
-    const id = performer.url.split('/').slice(-2, -1)[0];
-    this._musicService.getPerformerDetail(id).subscribe(
-      detail => this.musicPerformer = detail
-    )
-  }
 
   nextPage(): void {
     if (this.hasNextPage) {
       this.currentPage++;
       this._musicService.searchMusic(this.searchTermTitle, this.searchTermGenre, this.currentPage * this.pageSize, this.pageSize).subscribe(data => {
         this.musics = data.results;
-        this.hasNextPage = !!data.next;;})
+        this.hasNextPage = !!data.next;;
+      })
     }
   }
 
@@ -70,34 +61,22 @@ export class MusicsListComponent {
       this.currentPage--;
       this._musicService.searchMusic(this.searchTermTitle, this.searchTermGenre, this.currentPage * this.pageSize, this.pageSize).subscribe(data => {
         this.musics = data.results;
-        this.hasNextPage = !!data.next;;});
+        this.hasNextPage = !!data.next;;
+      });
     }
   }
 
-  onSearch(searchTerm?: string, searchTermGenre?: string ): void {
-    console.log(searchTerm)
+  onSearch(searchTerm?: string, searchTermGenre?: string): void {
     this.searchTermTitle = searchTerm
     this.searchTermGenre = searchTermGenre
     this._musicService.searchMusic(searchTerm, searchTermGenre).subscribe(
       data => {
         this.musics = data.results;
         this.hasNextPage = !!data.next
+        this.numberOfPages = Math.ceil(data.count/this.pageSize)
+        console.log(this.numberOfPages)
       });
 
 
-  }
-
-
-
-  onSearchGenre(searchTermGenre: string): void {
-    if (searchTermGenre) {
-      this._musicService.searchMusicGenre(searchTermGenre).subscribe(
-        data => {
-          this.musics = data.results;
-          this.hasNextPage = !!data.next
-        });
-    } else {
-      this.loadMusics();
-    }
   }
 }

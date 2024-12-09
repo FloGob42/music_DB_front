@@ -1,3 +1,5 @@
+<h2>Musics list</h2>
+
 <div class="container mx-auto px-4 py-8">
 
         
@@ -15,7 +17,7 @@
     <div>
         <div *ngFor="let music of musics">
             <a [routerLink]="['/musics', music.id]">{{ music.title }}  </a>
-            <a [routerLink]="['/performers', music.performer.id]">{{music.performer_name}}  </a>
+            <a [routerLink]="['/performers', music.performer_id]">{{music.performer_name}}  </a>
             <h5>Genre: {{music.genre}}</h5>
         
         
@@ -32,7 +34,7 @@
     >
         Précédent
     </button>
-    <span class="py-2">Page {{currentPage + 1}}</span>
+    <span class="py-2">Page {{currentPage + 1}}/{{numberOfPages}}</span>
     <button
         (click)="nextPage()"
         [disabled]="!hasNextPage"

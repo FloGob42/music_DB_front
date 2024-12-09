@@ -7,6 +7,7 @@ import { MusicDetail, MusicList } from '../../models/musics.models';
 import { PerformerDetail } from '../../models/performers.models';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-performers-list',
@@ -21,6 +22,8 @@ export class PerformersListComponent {
   performers : PerformerDetail[] = [];
   selectedperformer: PerformerDetail | null = null;
   performerMusics: MusicList | null =null;
+  searchTermName?: string = '';
+  searchTermGenre?: string = ''
   
   currentPage =0;
   pageSize = 20;
@@ -39,19 +42,7 @@ export class PerformersListComponent {
     });
   }
 
-  loadPerformerDetail(performer: PerformerDetail): void {
-    const id = performer.url.split('/').slice(-2, -1)[0];
-    this._musicService.getPerformerDetail(id).subscribe(
-      detail => this.selectedperformer = detail
-    )
-  }
 
-  // loadPerformerMusics(name: string): void {
-    
-  //   this._musicService.getPerformerMusics(name).subscribe(
-  //     detail => this.performerMusics = detail
-  //   )
-  // }
 
   nextPage(): void {
     if (this.hasNextPage) {
@@ -67,13 +58,14 @@ export class PerformersListComponent {
     }
   }
 
-  onSearch(searchTerm: string): void {
-    if (searchTerm) {
-      this._musicService.searchPerformer(searchTerm).subscribe(
-        data => this.performers = data.results
-      );
-    } else {
-      this.loadPerformers();
-    }
+  onSearch(searchTerm?: string, searchTermGenre?: string): void {
+    this.searchTermName = searchTerm
+    this.searchTermGenre = searchTermGenre
+    this._musicService.searchPerformer(searchTerm, searchTermGenre).subscribe(
+      data => {
+        this.performers = data.results;
+        this.hasNextPage = !!data.next
+        
+      });
   }
 }
