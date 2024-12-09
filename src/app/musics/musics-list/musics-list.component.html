@@ -1,46 +1,33 @@
-<h2>Musics list</h2>
+<h2 class="text-2xl font-semibold text-center mb-8 text-slate-800">Musics List</h2>
 
-<div class="container mx-auto px-4 py-8">
+<div class="container mx-auto px-4 py-8 bg-white shadow rounded">
+    <app-music-search (searchChange)="onSearch($event.title, $event.genre)" [placeHolderTitle]="'Search by title'"
+        [placeHolderGenre]="'Search by genre'" class="mb-8"></app-music-search>
 
-        
-    <app-music-search
-        (searchChange)="onSearch($event.title, $event.genre)"
-        [placeHolderTitle]="'search by title'"
-        [placeHolderGenre]="'search by genre'"
-        class="mb-8">
-        
-    </app-music-search>
-
-    
-        
-
-    <div>
-        <div *ngFor="let music of musics">
-            <a [routerLink]="['/musics', music.id]">{{ music.title }}  </a>
-            <a [routerLink]="['/performers', music.performer_id]">{{music.performer_name}}  </a>
-            <h5>Genre: {{music.genre}}</h5>
-        
-        
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div *ngFor="let music of musics" class="p-4 bg-gray-50 border border-gray-200 rounded hover:shadow-lg">
+            <a [routerLink]="['/musics', music.id]" class="text-lg font-bold text-blue-600 hover:text-blue-700 block">
+                {{ music.title }}
+            </a>
+            <a [routerLink]="['/performers', music.performer_id]"
+                class="text-sm text-gray-600 hover:text-gray-800 block">
+                {{ music.performer_name }}
+            </a>
+            <h5 class="text-sm text-gray-600 mt-2">Genre: {{ music.genre }}</h5>
         </div>
     </div>
-    </div>
-
 
     <div class="mt-8 flex justify-center gap-4">
-    <button
-        (click)="previousPage()"
-        [disabled]="currentPage === 0"
-        class="px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50"
-    >
-        Précédent
-    </button>
-    <span class="py-2">Page {{currentPage + 1}}/{{numberOfPages}}</span>
-    <button
-        (click)="nextPage()"
-        [disabled]="!hasNextPage"
-        class="px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50"
-    >
-        Suivant
-    </button>
+        <button (click)="previousPage()" [disabled]="currentPage === 0"
+            class="px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50 hover:bg-blue-600">
+            Previous
+        </button>
+        <span class="py-2 text-lg">
+            Page {{ currentPage + 1 }} / {{ numberOfPages }}
+        </span>
+        <button (click)="nextPage()" [disabled]="!hasNextPage"
+            class="px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50 hover:bg-blue-600">
+            Next
+        </button>
     </div>
-
+</div>

@@ -1,6 +1,22 @@
-<div>
-    <p><strong>Title:</strong>{{music.title}}</p>
-    <p><strong>Performer:</strong>{{music.performer_name}}</p>
-    <p><strong>Genre:</strong>{{music.genre}}</p>
-    <p><strong>Year:</strong>{{music.year}}</p>
+<h2 class="text-2xl font-semibold text-center mb-8 text-slate-800">Music details</h2>
+
+<div class="container mx-auto px-4 py-6 bg-white shadow rounded">
+    <div class="text-gray-800">
+        <p class="mb-2">
+            <strong class="font-semibold">Title: </strong>
+            <span>{{ music.title }}</span>
+        </p>
+        <p class="mb-2">
+            <strong class="font-semibold">Performer: </strong>
+            <span>{{ music.performer_name }}</span>
+        </p>
+        <p class="mb-2">
+            <strong class="font-semibold">Genre: </strong>
+            <span>{{ music.genre }}</span>
+        </p>
+        <p class="mb-2">
+            <strong class="font-semibold">Year: </strong>
+            <span>{{ music.year }}</span>
+        </p>
+    </div>
 </div>

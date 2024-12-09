@@ -1,6 +1,15 @@
-<router-outlet/>
-<br><br>
-<div>
-    <a [routerLink]="['/performers']">List of performers</a><br>
-    <a [routerLink]="['/musics']">List of musics</a>
+<div class="bg-blue-600 text-white py-6 shadow">
+    <div class="container mx-auto text-center">
+        <h1 class="text-4xl font-bold mb-4">Welcome to Music DB</h1>
+        <nav class="flex justify-center space-x-8">
+            <a [routerLink]="['/performers']" class="text-lg font-semibold hover:text-blue-300">
+                List of Performers
+            </a>
+            <a [routerLink]="['/musics']" class="text-lg font-semibold hover:text-blue-300">
+                List of Musics
+            </a>
+        </nav>
+    </div>
 </div>
+
+<router-outlet></router-outlet>
