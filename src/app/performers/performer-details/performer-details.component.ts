@@ -37,6 +37,12 @@ export class PerformerDetailsComponent {
     });
   }
 
+  deletePerformer(id:string): void {
+    this.musicsService.deletePerformer(id).subscribe((performer)=> {
+      this.performer = performer
+    })
+  }
+
   // loadPerformerMusics(name: string): void {
     
   //   this.musicsService.getPerformerMusics(name).subscribe(

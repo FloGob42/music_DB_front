@@ -1,0 +1,49 @@
+
+    <h2>Add a music</h2>
+    <div>
+    <form [formGroup]="musicForm" (ngSubmit)="onSubmit()">
+
+        <div>
+            <label for="title">Title :</label>
+            <input id="title" formControlName="title" type="text" />
+            <div *ngIf="musicForm.get('title')?.invalid && musicForm.get('title')?.touched">
+                <small>Title required.</small>
+            </div>
+        </div>
+
+
+        <div>
+            <label for="year">Year :</label>
+            <input id="year" formControlName="year" type="number" />
+            <div *ngIf="musicForm.get('year')?.invalid && musicForm.get('year')?.touched">
+                <small>Enter a valid year.</small>
+            </div>
+        </div>
+
+
+        <div>
+            <label for="genre">Genre :</label>
+            <input id="genre" formControlName="genre" type="text" />
+            <div *ngIf="musicForm.get('genre')?.invalid && musicForm.get('genre')?.touched">
+                <small>Genre required.</small>
+            </div>
+        </div>
+
+
+        <div>
+            <label for="performer">Performer :</label>
+            <div class="dropdown-container">
+                <select id="performer" formControlName="performer_id">
+                    <option *ngFor="let performer of performers" [value]="performer.id">
+                        {{ performer.name }}
+                    </option>
+                </select>
+            </div>
+            <div *ngIf="musicForm.get('performer_id')?.invalid && musicForm.get('performer_id')?.touched">
+                <small>Choose a performer.</small>
+            </div>
+        </div>
+
+        <button type="submit" [disabled]="musicForm.invalid">Send</button>
+    </form>
+</div>

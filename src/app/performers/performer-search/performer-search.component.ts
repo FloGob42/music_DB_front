@@ -24,7 +24,7 @@ export class PerformerSearchComponent {
     // Configuration du debounce pour la recherche
     this.searchSubject.pipe(
       debounceTime(300), // Attend 300ms après la dernière frappe
-      // distinctUntilChanged() // Évite les recherches en double
+      distinctUntilChanged() // Évite les recherches en double
     ).subscribe(term => {
       this.searchChange.emit(term);
     });

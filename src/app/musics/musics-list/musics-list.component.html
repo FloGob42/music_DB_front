@@ -1,5 +1,9 @@
 <h2 class="text-2xl font-semibold text-center mb-8 text-slate-800">Musics List</h2>
 
+<a [routerLink]="['/musics/add']" class="text-lg font-bold text-blue-600 hover:text-blue-700 block">
+    Add music
+</a>
+
 <div class="container mx-auto px-4 py-8 bg-white shadow rounded">
     <app-music-search (searchChange)="onSearch($event.title, $event.genre)" [placeHolderTitle]="'Search by title'"
         [placeHolderGenre]="'Search by genre'" class="mb-8"></app-music-search>
