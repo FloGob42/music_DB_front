@@ -29,9 +29,9 @@ export class MusicAddComponent implements OnInit {
     private router: Router
   ) { }
 
-   ngOnInit(): void {
+  ngOnInit(): void {
 
-    console.log("hello there")
+    
     this.musicForm = this.fb.group({
       title: ['', Validators.required],
       year: ['', [Validators.required, Validators.min(1900)]],

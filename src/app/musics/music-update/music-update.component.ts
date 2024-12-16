@@ -35,7 +35,7 @@ export class MusicUpdateComponent implements OnInit {
 
     this.musicForm = this.fb.group({
       title: ['', Validators.required],
-      year: ['', [Validators.required, Validators.min(1900)]],
+      year: ['', [Validators.required, Validators.min(1200)]],
       genre: ['', Validators.required],
       performer_id: ['', Validators.required]
     });

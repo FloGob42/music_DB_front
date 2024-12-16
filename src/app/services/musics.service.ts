@@ -102,7 +102,33 @@ export class MusicsService {
     return this._http.delete<PerformerDetail>(`${this.baseUrl}/performers/${id}/`)
   }
 
+  updatePerformer(performer: PerformerDetail): Observable<PerformerDetail> {
 
+    const formData = new FormData();
+    formData.append('name', performer.name);
+    formData.append('genre', performer.genre);
+    formData.append('origin', performer.origin);
+    if (performer.birth_date){
+    formData.append('performer_birth_date', performer.birth_date.toString())};
+    if (performer.formation_year){
+    formData.append('performer_formation_year', performer.formation_year.toString())};
+
+    return this._http.put<PerformerDetail>(`${this.baseUrl}/performers/${performer.id}/`, formData);
+  }
+
+  addPerformer(performer: PerformerDetail): Observable<PerformerDetail> {
+
+    const formData = new FormData();
+    formData.append('name', performer.name);
+    formData.append('genre', performer.genre);
+    formData.append('origin', performer.origin);
+    if (performer.birth_date){
+      formData.append('performer_birth_date', performer.birth_date.toString())};
+      if (performer.formation_year){
+      formData.append('performer_formation_year', performer.formation_year.toString())};
+
+    return this._http.post<PerformerDetail>(`${this.baseUrl}/performers/`, formData);
+  }
 
 }
 

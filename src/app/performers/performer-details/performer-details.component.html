@@ -34,3 +34,13 @@
         </div>
     </div>
 </div>
+
+
+<input type="button"
+        (click)="deletePerformer(performerId)"
+        value="Delete performer"
+>
+
+<a [routerLink]="['/performers/update', performerId]" class="text-lg font-bold text-blue-600 hover:text-blue-700 block">
+    Update performer
+</a>

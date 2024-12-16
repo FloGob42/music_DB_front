@@ -6,8 +6,8 @@ export interface PerformerDetail {
     name: string,
     genre: string,
     origin: string,
-    birth_date: Date,
-    formation_year: number
+    birth_date: Date|null,
+    formation_year: number|null,
     performer_musics: MusicDetail[]
 }
 

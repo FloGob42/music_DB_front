@@ -1,7 +1,7 @@
 <div *ngIf="isLoading">Loading music details...</div>
 
 <div *ngIf="!isLoading">
-    <h2>Modifier la musique : {{ musicDetail.title }}</h2>
+    <h2>Update music : {{ musicDetail.title }}</h2>
     
 
     <form [formGroup]="musicForm" (ngSubmit)="onSubmit()">
