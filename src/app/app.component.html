@@ -9,6 +9,16 @@
                 List of Musics
             </a>
         </nav>
+
+        <ng-container *ngIf="userService.isAuthenticated(); else guestLinks">
+            <button (click)="onLogout()">Logout</button>
+        </ng-container>
+        
+        <ng-template #guestLinks>
+            <a routerLink="/user/login">Login</a>
+            <a routerLink="/user/register">Register</a>
+        </ng-template>
+
     </div>
 </div>
 

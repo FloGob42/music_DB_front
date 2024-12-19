@@ -8,7 +8,8 @@
         </p>
         <p class="mb-2">
             <strong class="font-semibold">Performer: </strong>
-            <span>{{ music.performer_name }}</span>
+            <span><a [routerLink]="['/performers', music.performer_id]" class="text-blue-500 hover:text-blue-700">{{ music.performer_name }}</a></span>
+            
         </p>
         <p class="mb-2">
             <strong class="font-semibold">Genre: </strong>
